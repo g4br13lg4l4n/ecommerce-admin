@@ -10,7 +10,7 @@ export default {
     },
     {
       title: true,
-      name: 'Theme',
+      name: 'Productos',
       class: '',
       wrapper: {
         element: '',
@@ -18,13 +18,13 @@ export default {
       }
     },
     {
-      name: 'Colors',
-      url: '/theme/colors',
-      icon: 'icon-drop'
+      name: 'Todos los productos',
+      url: '/dashboard/productos/todos',
+      icon: 'icon-basket-loaded'
     },
     {
-      name: 'Typography',
-      url: '/theme/typography',
+      name: 'Agregar nuevo',
+      url: '/dashboard/productos/agregar',
       icon: 'icon-pencil'
     },
     {
@@ -38,131 +38,131 @@ export default {
     },
     {
       name: 'Base',
-      url: '/base',
+      url: '/dashboard/base',
       icon: 'icon-puzzle',
       children: [
         {
           name: 'Breadcrumbs',
-          url: '/base/breadcrumbs',
+          url: '/dashboard/base/breadcrumbs',
           icon: 'icon-puzzle'
         },
         {
           name: 'Cards',
-          url: '/base/cards',
+          url: '/dashboard/base/cards',
           icon: 'icon-puzzle'
         },
         {
           name: 'Carousels',
-          url: '/base/carousels',
+          url: '/dashboard/base/carousels',
           icon: 'icon-puzzle'
         },
         {
           name: 'Collapses',
-          url: '/base/collapses',
+          url: '/dashboard/base/collapses',
           icon: 'icon-puzzle'
         },
         {
           name: 'Forms',
-          url: '/base/forms',
+          url: '/dashboard/base/forms',
           icon: 'icon-puzzle'
         },
         {
           name: 'Jumbotrons',
-          url: '/base/jumbotrons',
+          url: '/dashboard/base/jumbotrons',
           icon: 'icon-puzzle'
         },
         {
           name: 'List Groups',
-          url: '/base/list-groups',
+          url: '/dashboard/base/list-groups',
           icon: 'icon-puzzle'
         },
         {
           name: 'Navs',
-          url: '/base/navs',
+          url: '/dashboard/base/navs',
           icon: 'icon-puzzle'
         },
         {
           name: 'Navbars',
-          url: '/base/navbars',
+          url: '/dashboard/base/navbars',
           icon: 'icon-puzzle'
         },
         {
           name: 'Paginations',
-          url: '/base/paginations',
+          url: '/dashboard/base/paginations',
           icon: 'icon-puzzle'
         },
         {
           name: 'Popovers',
-          url: '/base/popovers',
+          url: '/dashboard/base/popovers',
           icon: 'icon-puzzle'
         },
         {
           name: 'Progress Bars',
-          url: '/base/progress-bars',
+          url: '/dashboard/base/progress-bars',
           icon: 'icon-puzzle'
         },
         {
           name: 'Switches',
-          url: '/base/switches',
+          url: '/dashboard/base/switches',
           icon: 'icon-puzzle'
         },
         {
           name: 'Tables',
-          url: '/base/tables',
+          url: '/dashboard/base/tables',
           icon: 'icon-puzzle'
         },
         {
           name: 'Tabs',
-          url: '/base/tabs',
+          url: '/dashboard/base/tabs',
           icon: 'icon-puzzle'
         },
         {
           name: 'Tooltips',
-          url: '/base/tooltips',
+          url: '/dashboard/base/tooltips',
           icon: 'icon-puzzle'
         }
       ]
     },
     {
       name: 'Buttons',
-      url: '/buttons',
+      url: '/dashboard/buttons',
       icon: 'icon-cursor',
       children: [
         {
           name: 'Buttons',
-          url: '/buttons/standard-buttons',
+          url: '/dashboard/buttons/standard-buttons',
           icon: 'icon-cursor'
         },
         {
           name: 'Button Dropdowns',
-          url: '/buttons/dropdowns',
+          url: '/dashboard/buttons/dropdowns',
           icon: 'icon-cursor'
         },
         {
           name: 'Button Groups',
-          url: '/buttons/button-groups',
+          url: '/dashboard/buttons/button-groups',
           icon: 'icon-cursor'
         },
         {
           name: 'Brand Buttons',
-          url: '/buttons/brand-buttons',
+          url: '/dashboard/buttons/brand-buttons',
           icon: 'icon-cursor'
         }
       ]
     },
     {
       name: 'Charts',
-      url: '/charts',
+      url: '/dashboard/charts',
       icon: 'icon-pie-chart'
     },
     {
       name: 'Icons',
-      url: '/icons',
+      url: '/dashboard/icons',
       icon: 'icon-star',
       children: [
         {
           name: 'CoreUI Icons',
-          url: '/icons/coreui-icons',
+          url: '/dashboard/icons/coreui-icons',
           icon: 'icon-star',
           badge: {
             variant: 'info',
@@ -171,12 +171,12 @@ export default {
         },
         {
           name: 'Flags',
-          url: '/icons/flags',
+          url: '/dashboard/icons/flags',
           icon: 'icon-star'
         },
         {
           name: 'Font Awesome',
-          url: '/icons/font-awesome',
+          url: '/dashboard/icons/font-awesome',
           icon: 'icon-star',
           badge: {
             variant: 'secondary',
@@ -185,36 +185,36 @@ export default {
         },
         {
           name: 'Simple Line Icons',
-          url: '/icons/simple-line-icons',
+          url: '/dashboard/icons/simple-line-icons',
           icon: 'icon-star'
         }
       ]
     },
     {
       name: 'Notifications',
-      url: '/notifications',
+      url: '/dashboard/notifications',
       icon: 'icon-bell',
       children: [
         {
           name: 'Alerts',
-          url: '/notifications/alerts',
+          url: '/dashboard/notifications/alerts',
           icon: 'icon-bell'
         },
         {
           name: 'Badges',
-          url: '/notifications/badges',
+          url: '/dashboard/notifications/badges',
           icon: 'icon-bell'
         },
         {
           name: 'Modals',
-          url: '/notifications/modals',
+          url: '/dashboard/notifications/modals',
           icon: 'icon-bell'
         }
       ]
     },
     {
       name: 'Widgets',
-      url: '/widgets',
+      url: '/dashboard/widgets',
       icon: 'icon-calculator',
       badge: {
         variant: 'primary',
@@ -264,21 +264,6 @@ export default {
         text: 'NEW'
       },
       attributes: { disabled: true },
-    },
-    {
-      name: 'Download CoreUI',
-      url: 'http://coreui.io/vue/',
-      icon: 'icon-cloud-download',
-      class: 'mt-auto',
-      variant: 'success',
-      attributes: { target: '_blank', rel: 'noopener' }
-    },
-    {
-      name: 'Try CoreUI PRO',
-      url: 'http://coreui.io/pro/vue/',
-      icon: 'icon-layers',
-      variant: 'danger',
-      attributes: { target: '_blank', rel: 'noopener' }
-    },
+    }
   ]
 }

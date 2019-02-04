@@ -58,6 +58,10 @@ const Register = () => import('@/views/pages/Register')
 const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 
+// Productos
+const AllProducts = () => import('@/views/products/AllProducts')
+const AddProducts = () => import('@/views/products/AddProducts')
+
 Vue.use(Router)
 
 export default new Router({
@@ -67,32 +71,37 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/dashboard',
-      name: 'Home',
+      name: 'Login',
+      component: Login,
+    },
+    {
+      path: '/dashboard',
+      redirect: 'dashboard/home',
+      name: 'Dashboard',
       component: DefaultContainer,
       children: [
         {
-          path: 'dashboard',
-          name: 'Dashboard',
+          path: 'home',
+          name: 'Home',
           component: Dashboard
         },
         {
-          path: 'theme',
-          redirect: '/theme/colors',
-          name: 'Theme',
+          path: 'productos',
+          redirect: 'productos/todos',
+          name: 'Productos',
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
-              path: 'colors',
-              name: 'Colors',
-              component: Colors
+              path: 'todos',
+              name: 'Todos',
+              component: AllProducts
             },
             {
-              path: 'typography',
-              name: 'Typography',
-              component: Typography
+              path: 'agregar',
+              name: 'Agregar',
+              component: AddProducts
             }
           ]
         },
@@ -319,11 +328,6 @@ export default new Router({
           path: '500',
           name: 'Page500',
           component: Page500
-        },
-        {
-          path: 'login',
-          name: 'Login',
-          component: Login
         },
         {
           path: 'register',

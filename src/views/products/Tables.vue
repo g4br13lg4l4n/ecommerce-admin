@@ -1,12 +1,10 @@
 <template>
   <div class="animated fadeIn">
-
     <b-row>
       <b-col lg="12">
         <c-table :table-data="items" :fields="fields" caption="<i class='fa fa-align-justify'></i> Simple Table"></c-table>
       </b-col>
-    </b-row>
-    
+    </b-row> 
   </div> 
 </template>
 
@@ -48,7 +46,6 @@ export default {
   data: () => {
     return {
       items: someData,
-      itemsArray: someData(),
       fields: [
         {key: 'username', label: 'User', sortable: true},
         {key: 'registered'},
