@@ -6,7 +6,6 @@ export default {
       icon: 'icon-speedometer',
       badge: {
         variant: 'primary',
-        text: 'NEW'
       }
     },
     {
