@@ -6,10 +6,28 @@ const connect = axios.create({
 })
 
 const API = {
+
   saveProducts: (data) => {
-    connect.post('article', data)
-    .then((resp) => {
-      console.log(resp)
+    return new Promise((resolve, reject) => {
+      connect.post('article', data)
+        .then(resp => {
+          resolve(resp)
+        })
+        .catch(err => {
+          reject(err)
+      })
+    })
+  },
+
+  getProducts: () => {
+    return new Promise((resolve, reject) => {
+      connect.get('article')
+        .then(resp => {
+          resolve(resp.data) 
+        })
+        .catch(err => {
+          reject(err)
+        })
     })
   }
 }

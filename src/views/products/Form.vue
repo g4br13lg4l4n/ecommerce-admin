@@ -27,23 +27,23 @@
             <b-form-group
               label="Cantidad"
               description="*Cantidad de productos que tengo disponible"
-              label-for="count">
-              <b-form-input id="count" v-model="form.count" :textarea="true" :rows="9" placeholder="Cantidad (Stock)"></b-form-input>
+              label-for="stock">
+              <b-form-input id="stock" v-model="form.stock" :textarea="true" :rows="9" placeholder="Cantidad (Stock)"></b-form-input>
             </b-form-group>
-            <b-form-group label="Precio regular" label-for="price" description="Precio regular">
+            <b-form-group label="Precio regular" label-for="salePrice" description="Precio regular">
               <b-input-group>
                 <b-input-group-prepend>
                   <b-input-group-text>$</b-input-group-text>
                 </b-input-group-prepend>
-                <b-form-input id="price" v-model="form.price" placeholder="Precio" type="text"></b-form-input>
+                <b-form-input id="salePrice" v-model="form.salePrice" placeholder="Precio" type="text"></b-form-input>
               </b-input-group>
             </b-form-group>
-            <b-form-group label="Precio de oferta" label-for="price_oferta" description="Precio de oferta">
+            <b-form-group label="Precio de oferta" label-for="offerPrice" description="Precio de oferta">
               <b-input-group>
                 <b-input-group-prepend>
                   <b-input-group-text>$</b-input-group-text>
                 </b-input-group-prepend>
-                <b-form-input id="price_oferta" v-model="form.price_oferta" placeholder="Precio de oferta" type="text"></b-form-input>
+                <b-form-input id="offerPrice" v-model="form.offerPrice" placeholder="Precio de oferta" type="text"></b-form-input>
               </b-input-group>
             </b-form-group>
 
@@ -77,9 +77,9 @@ export default {
         name: '',
         description: '',
         code: '',
-        count: '',
-        price: '',
-        price_oferta: '',
+        stock: '',
+        salePrice: '',
+        offerPrice: '',
         status: ''
       },
       selected: [], // Must be an array reference!
@@ -89,6 +89,12 @@ export default {
   methods: {
     save () {
       API.saveProducts(this.form)
+        .then(resp => {
+          console.log(resp)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 }
