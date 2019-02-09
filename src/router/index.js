@@ -62,6 +62,8 @@ const User = () => import('@/views/users/User')
 const AllProducts = () => import('@/views/products/AllProducts')
 const AddProducts = () => import('@/views/products/AddProducts')
 
+// Categories
+
 Vue.use(Router)
 
 export default new Router({
@@ -135,26 +137,46 @@ export default new Router({
           ]
         },
         {
-          path: 'base',
-          redirect: '/base/cards',
-          name: 'Base',
+          path: 'categoria',
+          redirect: '/dashboard/categoria/todos',
+          name: 'Categorías',
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
-              path: 'cards',
-              name: 'Cards',
+              path: 'todos',
+              name: 'Todos',
               component: Cards
             },
             {
-              path: 'forms',
-              name: 'Forms',
+              path: 'agregar',
+              name: 'Agregar',
+              component: Cards
+            },
+          ]
+        },
+        {
+          path: 'pedidos',
+          redirect: '/pedidos/pendientes',
+          name: 'Pedidos',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: 'pendientes',
+              name: 'Pendientes',
+              component: Cards
+            },
+            {
+              path: 'enCurso',
+              name: 'En Curso',
               component: Forms
             },
             {
-              path: 'switches',
-              name: 'Switches',
+              path: 'entregados',
+              name: 'Entregados',
               component: Switches
             },
             {

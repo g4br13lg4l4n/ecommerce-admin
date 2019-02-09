@@ -29,7 +29,7 @@ export default {
     },
     {
       title: true,
-      name: 'Components',
+      name: 'Opciones',
       class: '',
       wrapper: {
         element: '',
@@ -37,25 +37,42 @@ export default {
       }
     },
     {
-      name: 'Base',
-      url: '/dashboard/base',
-      icon: 'icon-puzzle',
+      name: 'Categorías',
+      url: '/dashboard/categoria',
+      icon: 'icon-rocket',
       children: [
         {
-          name: 'Breadcrumbs',
-          url: '/dashboard/base/breadcrumbs',
-          icon: 'icon-puzzle'
+          name: 'Categorías',
+          url: '/dashboard/categoria/todos',
+          icon: 'icon-list'
         },
         {
-          name: 'Cards',
-          url: '/dashboard/base/cards',
-          icon: 'icon-puzzle'
+          name: 'Agregar Categorías',
+          url: '/dashboard/categoria/agregar',
+          icon: 'icon-pencil'
+        },
+      ]
+    },  
+    {
+      name: 'Pedidos',
+      url: '/dashboard/pedidos',
+      icon: 'icon-rocket',
+      children: [
+        {
+          name: 'Pedidos pendientes',
+          url: '/dashboard/pedidos/pendientes',
+          icon: 'icon-fire'
         },
         {
-          name: 'Carousels',
-          url: '/dashboard/base/carousels',
-          icon: 'icon-puzzle'
+          name: 'En curso',
+          url: '/dashboard/pedidos/enCurso',
+          icon: 'icon-plane'
         },
+        {
+          name: 'Entregados',
+          url: '/dashboard/pedidos/entregados',
+          icon: 'icon-flag'
+        },/*
         {
           name: 'Collapses',
           url: '/dashboard/base/collapses',
@@ -120,7 +137,7 @@ export default {
           name: 'Tooltips',
           url: '/dashboard/base/tooltips',
           icon: 'icon-puzzle'
-        }
+        } */
       ]
     },
     {
