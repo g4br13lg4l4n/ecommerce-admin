@@ -22,7 +22,7 @@
               description="*Código identificador interno"
               label="Código"
               label-for="code">
-              <b-form-input id="code" v-model="form.code"  type="text" placeholder="Código" autocomplete="none"></b-form-input>
+              <b-form-input id="code" v-model="form.internalCode"  type="text" placeholder="Código" autocomplete="none"></b-form-input>
             </b-form-group>
             <b-form-group
               label="Cantidad"
@@ -76,7 +76,7 @@ export default {
       form: {
         name: '',
         description: '',
-        code: '',
+        internalCode: '',
         stock: '',
         salePrice: '',
         offerPrice: '',
