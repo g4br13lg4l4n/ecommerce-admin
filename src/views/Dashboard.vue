@@ -457,6 +457,7 @@ import MainChartExample from './dashboard/MainChartExample'
 import SocialBoxChartExample from './dashboard/SocialBoxChartExample'
 import CalloutChartExample from './dashboard/CalloutChartExample'
 import { Callout } from '@coreui/vue'
+import security from '../security/security'
 
 export default {
   name: 'dashboard',
@@ -547,6 +548,9 @@ export default {
         }
       }
     }
+  },
+  mounted() {
+    security.getToken(this.$route.params, this.$router)
   },
   methods: {
     variant (value) {

@@ -11,15 +11,15 @@
                   <p class="text-muted">Login para tu cuenta</p>
                   <b-input-group class="mb-3">
                     <b-input-group-prepend><b-input-group-text><i class="icon-user"></i></b-input-group-text></b-input-group-prepend>
-                    <b-form-input type="text" class="form-control" placeholder="Usuario" autocomplete="username email" />
+                    <b-form-input type="text" v-model="user.username" class="form-control" placeholder="Usuario" autocomplete="username email" />
                   </b-input-group>
                   <b-input-group class="mb-4">
                     <b-input-group-prepend><b-input-group-text><i class="icon-lock"></i></b-input-group-text></b-input-group-prepend>
-                    <b-form-input type="password" class="form-control" placeholder="Contraseña" autocomplete="current-password" />
+                    <b-form-input type="password" v-model="user.password" class="form-control" placeholder="Contraseña" autocomplete="current-password" />
                   </b-input-group>
                   <b-row>
                     <b-col cols="6">
-                      <b-button variant="primary" class="px-4">Entrar</b-button>
+                      <b-button variant="primary" @click="login" class="px-4">Entrar</b-button>
                     </b-col>
                   </b-row>
                 </b-form>
@@ -42,7 +42,27 @@
 </template>
 
 <script>
+import API from '../../API/api'
 export default {
-  name: 'Login'
+  name: 'Login',
+  data () {
+    return {
+      user: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    login () {
+      API.loginAdmin(this.user)
+        .then(resp => {
+          this.$router.push({name:'Home', params: resp.data})
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
 }
 </script>
