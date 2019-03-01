@@ -9,13 +9,6 @@ export default {
   name: 'AllProducts',
   components: {
     Tables
-  },
-  mounted() {
-    API.getProducts()
-      .then(resp => {
-        console.log(resp)
-      })
-
   }
 }
 </script>

@@ -9,7 +9,8 @@ const security = {
 
   getStorageToken: ()=> {
     if (localStorage.header) {
-      return localStorage.header;
+      const token = JSON.parse(localStorage.header)
+      return {Authorization: token.token_type+' '+token.access_token};
     }else {
       return ''
     }

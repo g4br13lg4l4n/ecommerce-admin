@@ -2,57 +2,48 @@
   <div class="animated fadeIn">
     <b-row>
       <b-col lg="12">
-        <c-table :table-data="items" :fields="fields" caption="<i class='fa fa-align-justify'></i> Simple Table"></c-table>
+        <c-table :table-data="items" :fields="fields" caption="Listado de productos"></c-table>
       </b-col>
-    </b-row> 
-  </div> 
+    </b-row>
+  </div>
 </template>
 
 <script>
 import { shuffleArray } from '@/shared/utils'
 import cTable from './Table.vue'
-
-const someData = () => shuffleArray([
-  {username: 'Samppa Nori', registered: '2012/01/01', role: 'Member', status: 'Active', _rowVariant: 'success'},
-  {username: 'Estavan Lykos', registered: '2012/02/01', role: 'Staff', status: 'Banned', _rowVariant: 'danger'},
-  {username: 'Chetan Mohamed', registered: '2012/02/01', role: 'Admin', status: 'Inactive', _rowVariant: 'info'},
-  {username: 'Derick Maximinus', registered: '2012/03/01', role: 'Member', status: 'Pending'},
-  {username: 'Friderik Dávid', registered: '2012/01/21', role: 'Staff', status: 'Active'},
-  {username: 'Yiorgos Avraamu', registered: '2012/01/01', role: 'Member', status: 'Active'},
-  {username: 'Avram Tarasios', registered: '2012/02/01', role: 'Staff', status: 'Banned'},
-  {username: 'Quintin Ed', registered: '2012/02/01', role: 'Admin', status: 'Inactive'},
-  {username: 'Enéas Kwadwo', registered: '2012/03/01', role: 'Member', status: 'Pending'},
-  {username: 'Agapetus Tadeáš', registered: '2012/01/21', role: 'Staff', status: 'Active'},
-  {username: 'Carwyn Fachtna', registered: '2012/01/01', role: 'Member', status: 'Active'},
-  {username: 'Nehemiah Tatius', registered: '2012/02/01', role: 'Staff', status: 'Banned'},
-  {username: 'Ebbe Gemariah', registered: '2012/02/01', role: 'Admin', status: 'Inactive'},
-  {username: 'Eustorgios Amulius', registered: '2012/03/01', role: 'Member', status: 'Pending'},
-  {username: 'Leopold Gáspár', registered: '2012/01/21', role: 'Staff', status: 'Active'},
-  {username: 'Pompeius René', registered: '2012/01/01', role: 'Member', status: 'Active'},
-  {username: 'Paĉjo Jadon', registered: '2012/02/01', role: 'Staff', status: 'Banned'},
-  {username: 'Micheal Mercurius', registered: '2012/02/01', role: 'Admin', status: 'Inactive'},
-  {username: 'Ganesha Dubhghall', registered: '2012/03/01', role: 'Member', status: 'Pending'},
-  {username: 'Hiroto Šimun', registered: '2012/01/21', role: 'Staff', status: 'Active'},
-  {username: 'Vishnu Serghei', registered: '2012/01/01', role: 'Member', status: 'Active'},
-  {username: 'Zbyněk Phoibos', registered: '2012/02/01', role: 'Staff', status: 'Banned'},
-  {username: 'Einar Randall', registered: '2012/02/01', role: 'Admin', status: 'Inactive'},
-  {username: 'Félix Troels', registered: '2012/03/21', role: 'Staff', status: 'Active'},
-  {username: 'Aulus Agmundr', registered: '2012/01/01', role: 'Member', status: 'Pending'}
-])
+import API from '../../API/api'
 
 export default {
   name: 'tables',
   components: {cTable},
   data: () => {
     return {
-      items: someData,
+      items: [],
       fields: [
-        {key: 'username', label: 'User', sortable: true},
-        {key: 'registered'},
-        {key: 'role'},
+        {key: 'identificador', label: 'ID', sortable: true},
+        {key: 'nombre', label: 'Nombre', sortable: true},
+        {key: 'nombre_corto', label: 'Nombre corto', sortable: true},
+        {key: 'descripcion', label: 'Descripción', sortable: true},
+        {key: 'disponibles', label: 'Cantidad (Stock)', sortable: true},
+        {key: 'estado', label: 'Estatus', sortable: true},
+        {key: 'estado_admin', label: 'Estado en tienda', sortable: true},
+        {key: 'precio_compra', label: 'Precio|Compra', sortable: true},
+        {key: 'precio_venta', label: 'Precio|Compra', sortable: true},
+        {key: 'precio_oferta', label: 'Precio|Compra', sortable: true},
+        {key: 'fechaCreacion', label: 'Fecha de creación', sortable: true},
+        {key: 'imagen', label: 'Imagen', sortable: true},
         {key: 'status', sortable: true}
       ],
     }
+  },
+  beforeMount() {
+    API.getProducts()
+      .then(resp => {
+        this.items = resp.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 </script>

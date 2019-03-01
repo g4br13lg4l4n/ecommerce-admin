@@ -2,15 +2,13 @@ import axios from 'axios'
 import configService from './config'
 import security from '../security/security'
 
-console.log(JSON.parse(security.getStorageToken()))
-
 const connectLogin = axios.create({
   baseURL: configService.apiUrl,
 })
 
 const connect = axios.create({
   baseURL: configService.apiUrl,
-  headers: JSON.parse(security.getStorageToken())
+  headers: security.getStorageToken()
 })
 
 const API = {
