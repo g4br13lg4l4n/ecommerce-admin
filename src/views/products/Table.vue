@@ -1,22 +1,33 @@
 <template>
   <b-card :header="caption">
-    <b-table :dark="dark" :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="items" :fields="captions" :current-page="currentPage" :per-page="perPage">
-      <template slot="status" slot-scope="data">
-        <b-badge :variant="getBadge(data.item.status)">{{data.item.status}}</b-badge>
-      </template>
+
+    <b-form >
+      <b-form-group>
+        <b-form-input
+          type="text"
+          required
+          v-model="seach"
+          @keyup="searching"
+          placeholder="Buscar producto" />
+      </b-form-group>
+    </b-form>
+
+
+    <b-table :hover="hover" :total-rows="totalRows" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" :items="items" :fields="fields" :per-page="perPage">
     </b-table>
     <nav>
-      <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
+      <b-pagination :total-rows="totalRows" @input="paginate(currentPage)" v-model="currentPage" :current-page="currentPage" prev-text="Anterior" next-text="Sigiente"/>
     </nav>
+
   </b-card>
 </template>
 
 <script>
 
-
+import API from '../../API/api'
 export default {
   name: 'c-table',
-  inheritAttrs: false,
+  inheritAttrs: true,
   props: {
     caption: {
       type: String,
@@ -24,15 +35,15 @@ export default {
     },
     hover: {
       type: Boolean,
-      default: false
+      default: true
     },
     striped: {
       type: Boolean,
-      default: false
+      default: true
     },
     bordered: {
       type: Boolean,
-      default: false
+      default: true
     },
     small: {
       type: Boolean,
@@ -40,48 +51,88 @@ export default {
     },
     fixed: {
       type: Boolean,
-      default: false
-    },
-    tableData: {
-      type: [Array, Function],
-      default: () => []
-    },
-    fields: {
-      type: [Array, Object],
-      default: () => []
-    },
-    perPage: {
-      type: Number,
-      default: 15
-    },
-    dark: {
-      type: Boolean,
-      default: false
+      default: true
     }
   },
   data: () => {
     return {
+      seach: '',
+      items: [],
+      perPage: 40,
+      totalRows: 0,
       currentPage: 1,
+      fields: [
+        {key: 'identificador', label: 'ID', sortable: true},
+        {key: 'nombre', label: 'Nombre', sortable: true},
+        {key: 'nombre_corto', label: 'Nombre corto', sortable: true},
+        {key: 'descripcion', label: 'Descripción', sortable: true},
+        {key: 'disponibles', label: 'Cantidad (Stock)', sortable: true},
+        {key: 'estado', label: 'Estatus', sortable: true},
+        {key: 'estado_admin', label: 'Estado en tienda', sortable: true},
+        {key: 'precio_compra', label: 'Precio|Compra', sortable: true},
+        {key: 'precio_venta', label: 'Precio|Compra', sortable: true},
+        {key: 'precio_oferta', label: 'Precio|Compra', sortable: true},
+        {key: 'fechaCreacion', label: 'Fecha de creación', sortable: true},
+        {key: 'imagen', label: 'Imagen'},
+        {key: 'estado_admin', sortable: true}
+      ],
     }
-  },
-  computed: {
-    items: function() {
-      const items =  this.tableData
-      return Array.isArray(items) ? items : items()
-    },
-    totalRows: function () { return this.getRowCount() },
-    captions: function() { return this.fields }
   },
   methods: {
-    getBadge (status) {
-      return status === 'Active' ? 'success'
-        : status === 'Inactive' ? 'secondary'
-          : status === 'Pending' ? 'warning'
-            : status === 'Banned' ? 'danger' : 'primary'
+    searching() {
+      if(this.seach.length > 4){
+        API.getProducts('products/like?name='+this.seach)
+          .then(resp => {
+            this.items = resp.data
+            this.perPage = resp.meta.pagination.per_page
+            this.totalRows = resp.meta.pagination.total
+            this.currentPage = resp.meta.pagination.current_page
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
+      if(this.seach.length === 0){
+        API.getProducts('products')
+        .then(resp => {
+          this.items = resp.data
+          this.perPage = resp.meta.pagination.per_page
+          this.totalRows = resp.meta.pagination.total
+          this.currentPage = resp.meta.pagination.current_page
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
     },
-    getRowCount: function () {
-      return this.items.length
-    }
-  }
+    paginate(a){
+      API.getProducts('products?page='+this.currentPage)
+        .then(resp => {
+          this.items = resp.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+
+    getBadge (estado) {
+      return estado === 'disponible' ? 'success'
+        : estado === 'Visible' ? 'secondary'
+          : estado === 'no disponible' ? 'warning'
+            : estado === 'Banned' ? 'danger' : 'primary'
+    },
+  },
+  beforeMount() {
+    API.getProducts('products')
+      .then(resp => {
+        this.items = resp.data
+        this.perPage = resp.meta.pagination.per_page
+        this.totalRows = resp.meta.pagination.total
+        this.currentPage = resp.meta.pagination.current_page
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
 }
 </script>

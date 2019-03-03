@@ -17,11 +17,10 @@ const API = {
     return new Promise((resolve, reject) => {
       const data = {
         grant_type: 'password',
-        client_id: 2,
-        client_secret: 'mgjpUHN0y31U3ONlvuAYKZzZhIJkum5cYWEnNbLk',
+        client_id: 5,
+        client_secret: 'PCjDBktajMi35LASsS70whYHUeoRWyzMgYPx5EPF',
         username: _data['username'],
         password: _data['password'],
-        provider: 'users'
       }
       connectLogin.post('oauth/token', data)
         .then(resp => {
@@ -47,9 +46,9 @@ const API = {
     })
   },
 
-  getProducts: () => {
+  getProducts: (page) => {
     return new Promise((resolve, reject) => {
-      connect.get('products')
+      connect.get(page)
         .then(resp => {
           resolve(resp.data)
         })
