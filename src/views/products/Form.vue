@@ -7,12 +7,24 @@
             <strong>Nuevo Producto</strong>
           </div>
           <b-form>
-            <b-form-group
-              description="*Nombre completo del producto con que aparecerá en su tienda en linea"
-              label="Nombre"
-              label-for="name">
-              <b-form-input id="name" v-model="form.name" type="text" placeholder="Nombre del producto" autocomplete="none"></b-form-input>
-            </b-form-group>
+            <b-row>
+              <b-col md="6">
+                <b-form-group
+                  description="*Nombre completo del producto con que aparecerá en su tienda en linea"
+                  label="Nombre"
+                  label-for="name">
+                  <b-form-input id="name" v-model="form.name" type="text" placeholder="Nombre del producto" autocomplete="none"></b-form-input>
+                </b-form-group>
+              </b-col>
+              <b-col md="6">
+                <b-form-group
+                  description="*Nombre corto de su producto"
+                  label="Nombre corto"
+                  label-for="name_short">
+                  <b-form-input id="name_short" v-model="form.shortName" type="text" placeholder="Nombre corto" autocomplete="none"></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
             <b-form-group
               label="Descripción "
               label-for="description">
@@ -147,8 +159,9 @@ export default {
     return {
       form: {
         name: '',
+        shortName: '',
         description: '',
-        internalCode: '',
+        internalCode: null,
         stock: '',
         status: 'En existencia', // En existencia, Agotado, Por Agotar
         status_admin: '',
@@ -165,7 +178,7 @@ export default {
   },
   methods: {
     save () {
-      API.saveProducts(this.form)
+      API.saveProducts('products',this.form)
         .then(resp => {
           this.form = {}
           console.log(resp)
@@ -183,22 +196,6 @@ export default {
           this.form.image =e.target.result
         })
       }
-
-
-    //  fileReader.readAsDataURL(imgCant)
-    /*  fileReader.onload = ((e) => {
-        this.form.image.push(imgCant)
-      })*/
-
-      /*
-      for (let i = 0; i < imgCant; i++) {
-        file = files.files[i]
-        fileReader = new FileReader()
-        fileReader.readAsDataURL(file)
-        fileReader.onload = ((e) => {
-          this.publicidad.images.push(e.target.result)
-        })
-      } */
     },
     _images(){
 

@@ -1,14 +1,13 @@
 <template>
-  <Tables/>
+  <Table/>
 </template>
-
 <script>
-import API from '../../API/api.js'
-import Tables from './Tables'
+
+import Table from './Table'
 export default {
   name: 'AllProducts',
   components: {
-    Tables
+    Table
   }
 }
 </script>

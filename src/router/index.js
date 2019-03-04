@@ -64,6 +64,9 @@ const AddProducts = () => import('@/views/products/AddProducts')
 
 // Categories
 
+const AllCategories = () => import('@/views/categories/AllCategories')
+const AddCategories = () => import('@/views/categories/AddCategories')
+
 Vue.use(Router)
 
 export default new Router({
@@ -147,12 +150,12 @@ export default new Router({
             {
               path: 'todos',
               name: 'Todos',
-              component: Cards
+              component: AllCategories
             },
             {
               path: 'agregar',
               name: 'Agregar',
-              component: Cards
+              component: AddCategories
             },
           ]
         },

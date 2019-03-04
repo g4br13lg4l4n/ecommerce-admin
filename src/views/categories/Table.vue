@@ -57,7 +57,7 @@
 
         <template slot="actions" slot-scope="row">
           <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
-            Subcategorias
+            Actualizar
           </b-button>
         </template>
       </b-table>
@@ -95,22 +95,14 @@ import API from '../../API/api'
         fields: [
           { key: 'identificador', label: 'ID', sortable: true, sortDirection: 'desc' },
           { key: 'nombre', label: 'Nombre', sortable: true, sortDirection: 'desc' },
-          { key: 'codigo_interno', label: 'Código interno', sortable: true, sortDirection: 'desc' },
-          { key: 'descripcion', label: 'Descripción', sortable: true, sortDirection: 'desc' },
-          { key: 'disponibles', label: 'Disponibles', sortable: true, sortDirection: 'desc' },
-          { key: 'estado', label: 'Estatus', sortable: true, sortDirection: 'desc' },
-          { key: 'estado_admin', label: 'Estado admin', sortable: true, sortDirection: 'desc' },
-          { key: 'precio_compra', label: 'Precio compra', sortable: true, sortDirection: 'desc' },
-          { key: 'precio_venta', label: 'Precio venta', sortable: true, sortDirection: 'desc' },
-          { key: 'offerPrice', label: 'Precio oferta', sortable: true, sortDirection: 'desc' },
-          { key: 'image', label: 'Imagen', sortable: true },
+          { key: 'descripcion', label: 'Descripción', sortable: true, class: 'text-center' },
           { key: 'fechaCreacion',  label: 'Fecha', sortable: true},
           { key: 'actions', label: 'Actions' }
         ],
         currentPage: 1,
-        perPage: 40,
+        perPage: 20,
         totalRows: items.length,
-        pageOptions: [40, 100, 200],
+        pageOptions: [20, 30, 40],
         sortBy: null,
         sortDesc: false,
         sortDirection: 'asc',
@@ -156,11 +148,10 @@ import API from '../../API/api'
       }
     },
     beforeMount() {
-      API.getProducts('products')
+      API.getCategory('categories')
         .then(resp => {
           this.items = resp.data
           this.totalRows = this.items.length
-          console.log()
         })
         .catch(err => {
           console.log(err)
@@ -168,9 +159,3 @@ import API from '../../API/api'
     },
   }
 </script>
-
-<style scoped>
-  .card-body {
-    overflow: scroll;
-  }
-</style>

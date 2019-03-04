@@ -32,11 +32,9 @@ const API = {
     })
   },
 
-
-
-  saveProducts: (data) => {
+  saveProducts: (page ,data) => {
     return new Promise((resolve, reject) => {
-      connect.post('products', data)
+      connect.post(page, data)
         .then(resp => {
           resolve(resp)
         })
@@ -56,7 +54,32 @@ const API = {
           reject(err)
         })
     })
+  },
+
+  getCategory: (page) => {
+    return new Promise((resolve, reject)=> {
+      connect.get(page)
+      .then(resp => {
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
+  },
+
+  postCategory: (page, data) => {
+    return new Promise((resolve, reject) => {
+      connect.post(page, data)
+      .then(resp => {
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
   }
+
 }
 
 export default API
