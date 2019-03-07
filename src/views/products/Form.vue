@@ -197,8 +197,20 @@ export default {
         })
       }
     },
-    _images(){
+    _images(e){
+      let fileReader
+      const files = e.target;
+      const imgCant = e.target.files.length;
+      let file;
 
+      for (let i = 0; i < imgCant; i++) {
+        file = files.files[i]
+        fileReader = new FileReader()
+        fileReader.readAsDataURL(file)
+        fileReader.onload = ((e) => {
+          this.form._images.push(e.target.result)
+        })
+      }
     }
   }
 }

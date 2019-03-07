@@ -17,8 +17,8 @@ const API = {
     return new Promise((resolve, reject) => {
       const data = {
         grant_type: 'password',
-        client_id: 5,
-        client_secret: 'PCjDBktajMi35LASsS70whYHUeoRWyzMgYPx5EPF',
+        client_id: 1,
+        client_secret: 'cinIC4gzXQRmqm2TMf9l75awtjL75TlhDj2Sy4xE',
         username: _data['username'],
         password: _data['password'],
       }
