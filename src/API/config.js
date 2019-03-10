@@ -1,6 +1,6 @@
 import isLocal from '../pugin/isLocal'
 
-const url = isLocal ? 'http://127.0.0.1:8000/' : 'http://dev.system.grupodopsa.com/'
+const url = isLocal ? 'http://127.0.0.1:8000/' : 'https://system.grupodopsa.com/'
 const configService = {
   apiUrl: url
 }
